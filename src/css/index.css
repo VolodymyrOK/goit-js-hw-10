@@ -7,7 +7,6 @@
   max-width: 960px;
   padding: 16px;
 }
-
 .example code {
   font-family: monospace;
   font-size: 16px;
@@ -17,7 +16,6 @@
   padding: 2px 6px;
   border-radius: 2px;
 }
-
 .example .background {
   height: 240px;
   background-image: url("../images/logo.png");
@@ -53,7 +51,6 @@
           box-sizing: border-box;
   animation: rotationBack 1s ease-in-out infinite reverse;
 }
-
 .loader::before {
   content: "";
   -webkit-box-sizing: border-box;
@@ -69,7 +66,6 @@
   -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
           box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 }
-
 .loader::after {
   content: "";
   -webkit-box-sizing: border-box;
@@ -109,6 +105,7 @@
   }
 }
 .error {
+  display: none;
   color: red;
   font-style: bold;
   font-size: 24px;
@@ -142,15 +139,12 @@
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
 }
-
 .breed-select::-ms-expand {
   display: none;
 }
-
 .breed-select:hover {
   border-color: #888;
 }
-
 .breed-select:focus {
   border-color: #aaa;
   -webkit-box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
@@ -159,12 +153,11 @@
   color: #222;
   outline: none;
 }
-
 .breed-select option {
   font-weight: normal;
 }
 
-*[dir=rtl] .breed-select,
+.breed-select *[dir=rtl] .breed-select,
 :root:lang(ar) .breed-select,
 :root:lang(iw) .breed-select {
   background-position: left 0.7em top 50%, 0 0;

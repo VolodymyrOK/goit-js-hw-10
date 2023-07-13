@@ -1,15 +1,5 @@
-import axios from 'axios';
 import { fetchBreeds, fetchCatByBreed } from './cat-api';
 import Notiflix from 'notiflix';
-
-// import SlimSelect from 'slim-select';
-// new SlimSelect({
-//   select: '#selectElement',
-// });
-
-const BASE_URL = 'https://api.thecatapi.com/v1';
-const API_KEY = (axios.defaults.headers.common['x-api-key'] =
-  'live_465kRbd1ImVDcUcymFr8AIz2lt4wQVQWQ8LZJ6kNyZUs9wxFIl9v421fWZcvwWND');
 
 const refs = {
   select: document.querySelector('.breed-select'),
@@ -19,25 +9,16 @@ const refs = {
 };
 const { select, loader, error, catInfo } = refs;
 
-error.style.display = 'none';
-select.style.display = 'none';
+showLoader('start');
 
-fetchBreeds(BASE_URL, API_KEY)
+fetchBreeds()
   .then(data => {
     select.innerHTML = createMarkup(data);
-
-    select.style.display = 'block';
-    loader.style.display = 'none';
+    showLoader('initSelect');
   })
-  .catch(err => {
-    error.style.display = 'block';
-    loader.style.display = 'none';
-    select.style.display = 'none';
-
-    // console.log('Loading', err);
-    Notiflix.Notify.failure(
-      'Oops! Something went wrong! Try reloading the page!'
-    );
+  .catch(() => {
+    showLoader('catch');
+    messageError();
   });
 
 function createMarkup(arr) {
@@ -49,28 +30,18 @@ function createMarkup(arr) {
 select.addEventListener('change', onChange);
 
 function onChange(event) {
-  loader.style.display = 'block';
-  catInfo.style.display = 'none';
+  showLoader('clickSelect');
 
   const id = event.currentTarget.value;
 
-  fetchCatByBreed(BASE_URL, API_KEY, id)
+  fetchCatByBreed(id)
     .then(data => {
       catInfo.innerHTML = createMarkupCat(data);
-
-      loader.style.display = 'none';
-      catInfo.style.display = 'flex';
+      showLoader('search');
     })
-    .catch(err => {
-      error.style.display = 'block';
-      loader.style.display = 'none';
-      select.style.display = 'none';
-
-      // console.log('Loading', err);
-      Notiflix.Report.failure('Title', 'Message', 'Button Text');
-      Notiflix.Notify.failure(
-        'Oops! Something went wrong! Try reloading the page!'
-      );
+    .catch(() => {
+      showLoader('catch');
+      messageError();
     });
 }
 
@@ -88,4 +59,33 @@ function createMarkupCat(arr) {
          </div>`
     )
     .join('');
+}
+
+function showLoader(showCode) {
+  if (showCode === 'start') {
+    select.style.display = 'none';
+  }
+  if (showCode === 'initSelect') {
+    select.style.display = 'block';
+    loader.style.display = 'none';
+  }
+  if (showCode === 'catch') {
+    error.style.display = 'block';
+    loader.style.display = 'none';
+    select.style.display = 'none';
+  }
+  if (showCode === 'search') {
+    loader.style.display = 'none';
+    catInfo.style.display = 'flex';
+  }
+  if (showCode === 'clickSelect') {
+    loader.style.display = 'block';
+    catInfo.style.display = 'none';
+  }
+}
+
+function messageError() {
+  Notiflix.Notify.failure(
+    'Oops! Something went wrong! Try reloading the page!'
+  );
 }

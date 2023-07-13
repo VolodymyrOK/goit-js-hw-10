@@ -6,25 +6,23 @@
   color: #2f2f37;
   max-width: 960px;
   padding: 16px;
-}
-
-.example code {
-  font-family: monospace;
-  font-size: 16px;
-  font-weight: 700;
-  background-color: #ff6b0a;
-  color: #fff;
-  padding: 2px 6px;
-  border-radius: 2px;
-}
-
-.example .background {
-  height: 240px;
-  // ❗️❗️❗️ The path to images from a SASS file
-  // is always the same as from the css folder.
-  background-image: url('../images/logo.png');
-  background-size: cover;
-  background-position: center;
+  & code {
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: 700;
+    background-color: #ff6b0a;
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 2px;
+  }
+  & .background {
+    height: 240px;
+    // ❗️❗️❗️ The path to images from a SASS file
+    // is always the same as from the css folder.
+    background-image: url('../images/logo.png');
+    background-size: cover;
+    background-position: center;
+  }
 }
 
 .cat-info {
@@ -53,31 +51,31 @@
   position: relative;
   box-sizing: border-box;
   animation: rotationBack 1s ease-in-out infinite reverse;
-}
-.loader::before {
-  content: '';
-  box-sizing: border-box;
-  left: 0;
-  top: 0;
-  transform: rotate(45deg);
-  position: absolute;
-  width: 48px;
-  height: 48px;
-  background: #ff3d00;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
-}
-.loader::after {
-  content: '';
-  box-sizing: border-box;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  background: #fff;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  &::before {
+    content: '';
+    box-sizing: border-box;
+    left: 0;
+    top: 0;
+    transform: rotate(45deg);
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    background: #ff3d00;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  }
+  &::after {
+    content: '';
+    box-sizing: border-box;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background: #fff;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  }
 }
 @keyframes rotationBack {
   0% {
@@ -89,6 +87,7 @@
 }
 
 .error {
+  display: none;
   color: red;
   font-style: bold;
   font-size: 24px;
@@ -119,24 +118,25 @@
   background-repeat: no-repeat, repeat;
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
+  &::-ms-expand {
+    display: none;
+  }
+  &:hover {
+    border-color: #888;
+  }
+  &:focus {
+    border-color: #aaa;
+    box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
+    box-shadow: 0 0 0 3px -moz-mac-focusring;
+    color: #222;
+    outline: none;
+  }
+  & option {
+    font-weight: normal;
+  }
 }
-.breed-select::-ms-expand {
-  display: none;
-}
-.breed-select:hover {
-  border-color: #888;
-}
-.breed-select:focus {
-  border-color: #aaa;
-  box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
-  box-shadow: 0 0 0 3px -moz-mac-focusring;
-  color: #222;
-  outline: none;
-}
-.breed-select option {
-  font-weight: normal;
-}
-*[dir='rtl'] .breed-select,
+
+.breed-select *[dir='rtl'] .breed-select,
 :root:lang(ar) .breed-select,
 :root:lang(iw) .breed-select {
   background-position: left 0.7em top 50%, 0 0;
