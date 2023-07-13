@@ -16,7 +16,6 @@ fetchBreeds()
     showLoader('endStartInit');
   })
   .catch(() => {
-    showLoader('showError');
     messageError();
   });
 
@@ -39,7 +38,6 @@ function onChange(event) {
       showLoader('endSearch');
     })
     .catch(() => {
-      showLoader('showError');
       messageError();
     });
 }
@@ -85,6 +83,7 @@ function showLoader(showCode) {
 }
 
 function messageError() {
+  showLoader('showError');
   Notiflix.Notify.failure(
     'Oops! Something went wrong! Try reloading the page!'
   );
