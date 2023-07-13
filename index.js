@@ -10,15 +10,13 @@ const refs = {
 };
 const { select, loader, loaderText, error, catInfo } = refs;
 
-showLoader('start');
-
 fetchBreeds()
   .then(data => {
     select.innerHTML = createMarkup(data);
-    showLoader('initSelect');
+    showLoader('endStartInit');
   })
   .catch(() => {
-    showLoader('catch');
+    showLoader('showError');
     messageError();
   });
 
@@ -31,17 +29,17 @@ function createMarkup(arr) {
 select.addEventListener('change', onChange);
 
 function onChange(event) {
-  showLoader('clickSelect');
+  showLoader('choiceData');
 
   const id = event.currentTarget.value;
 
   fetchCatByBreed(id)
     .then(data => {
       catInfo.innerHTML = createMarkupCat(data);
-      showLoader('search');
+      showLoader('endSearch');
     })
     .catch(() => {
-      showLoader('catch');
+      showLoader('showError');
       messageError();
     });
 }
@@ -63,27 +61,23 @@ function createMarkupCat(arr) {
 }
 
 function showLoader(showCode) {
-  if (showCode === 'start') {
-    select.style.display = 'none';
-    loaderText.style.display = 'block';
-  }
-  if (showCode === 'initSelect') {
+  if (showCode === 'endStartInit') {
     select.style.display = 'block';
     loader.style.display = 'none';
     loaderText.style.display = 'none';
   }
-  if (showCode === 'catch') {
+  if (showCode === 'showError') {
     select.style.display = 'none';
     loader.style.display = 'none';
     loaderText.style.display = 'none';
     error.style.display = 'block';
   }
-  if (showCode === 'search') {
+  if (showCode === 'endSearch') {
     loader.style.display = 'none';
     loaderText.style.display = 'none';
     catInfo.style.display = 'flex';
   }
-  if (showCode === 'clickSelect') {
+  if (showCode === 'choiceData') {
     loader.style.display = 'inline-block';
     loaderText.style.display = 'block';
     catInfo.style.display = 'none';
