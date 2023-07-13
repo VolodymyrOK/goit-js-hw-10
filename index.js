@@ -4,10 +4,11 @@ import Notiflix from 'notiflix';
 const refs = {
   select: document.querySelector('.breed-select'),
   loader: document.querySelector('.loader'),
+  loaderText: document.querySelector('.loader-text'),
   error: document.querySelector('.error'),
   catInfo: document.querySelector('.cat-info'),
 };
-const { select, loader, error, catInfo } = refs;
+const { select, loader, loaderText, error, catInfo } = refs;
 
 showLoader('start');
 
@@ -64,22 +65,27 @@ function createMarkupCat(arr) {
 function showLoader(showCode) {
   if (showCode === 'start') {
     select.style.display = 'none';
+    loaderText.style.display = 'block';
   }
   if (showCode === 'initSelect') {
     select.style.display = 'block';
     loader.style.display = 'none';
+    loaderText.style.display = 'none';
   }
   if (showCode === 'catch') {
-    error.style.display = 'block';
-    loader.style.display = 'none';
     select.style.display = 'none';
+    loader.style.display = 'none';
+    loaderText.style.display = 'none';
+    error.style.display = 'block';
   }
   if (showCode === 'search') {
     loader.style.display = 'none';
+    loaderText.style.display = 'none';
     catInfo.style.display = 'flex';
   }
   if (showCode === 'clickSelect') {
-    loader.style.display = 'block';
+    loader.style.display = 'inline-block';
+    loaderText.style.display = 'block';
     catInfo.style.display = 'none';
   }
 }

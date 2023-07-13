@@ -28,7 +28,7 @@
   display: -ms-flexbox;
   display: flex;
   width: 1024px;
-  margin: 25px;
+  margin: 40px 25px;
   gap: 20px;
 }
 
@@ -36,15 +36,11 @@
   font-weight: bold;
 }
 
-.hidden {
-  display: none;
-}
-
 .loader {
   width: 48px;
   height: 48px;
   background: #ff3d00;
-  display: block;
+  display: inline-block;
   margin: 50px 120px 0;
   position: relative;
   -webkit-box-sizing: border-box;
@@ -110,6 +106,14 @@
   font-style: bold;
   font-size: 24px;
   margin: 40px 20px;
+}
+
+.loader-text {
+  display: none;
+  color: teal;
+  font-style: bold;
+  font-size: 24px;
+  margin: 20px 30px;
 }
 
 .breed-select {
