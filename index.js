@@ -34,6 +34,9 @@ function onChange(event) {
 
   fetchCatByBreed(id)
     .then(data => {
+      if (!data.length) {
+        messageError();
+      }
       catInfo.innerHTML = createMarkupCat(data);
       showLoader('endSearch');
     })
