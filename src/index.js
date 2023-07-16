@@ -25,10 +25,10 @@ function onChange(event) {
   fetchCatByBreed(id)
     .then(data => {
       catInfo.innerHTML = '';
+      catInfo.innerHTML = createMarkupCat(data);
       if (!data.length) {
         throw new Error('Oops! Error reading data!');
       }
-      catInfo.innerHTML = createMarkupCat(data);
       showLoader('endSearch');
     })
     .catch(err => {

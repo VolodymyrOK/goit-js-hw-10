@@ -23,6 +23,13 @@
   background-position: center;
 }
 
+.error-reading-data-text {
+  color: red;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 40px 25px;
+}
+
 .cat-info {
   display: -webkit-box;
   display: -ms-flexbox;

@@ -5,6 +5,10 @@ function createMarkup(arr) {
 }
 
 function createMarkupCat(arr) {
+  if (!arr.length) {
+    return `
+        <p class="error-reading-data-text">Data reading error. Please select a different image.</p>`;
+  }
   return arr
     .map(
       ({ breeds: [{ name, description, temperament }], url }) =>
