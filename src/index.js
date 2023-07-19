@@ -9,11 +9,11 @@ const { select, catInfo } = refs;
 fetchBreeds()
   .then(data => {
     select.innerHTML = createMarkup(data);
-    showLoader('endStartInit');
   })
   .catch(err => {
     console.log(err);
-  });
+  })
+  .finally(showLoader('endStartInit'));
 
 select.addEventListener('change', onChange);
 
