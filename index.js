@@ -13,11 +13,11 @@ const { select, loader, loaderText, error, catInfo } = refs;
 fetchBreeds()
   .then(data => {
     select.innerHTML = createMarkup(data);
-    showLoader('endStartInit');
   })
   .catch(() => {
     messageError();
-  });
+  })
+  .finally(showLoader('endStartInit'));
 
 function createMarkup(arr) {
   return arr
@@ -42,7 +42,8 @@ function onChange(event) {
     })
     .catch(() => {
       messageError();
-    });
+    })
+    .finally();
 }
 
 function createMarkupCat(arr) {
