@@ -1,3 +1,4 @@
+import SlimSelect from 'slim-select';
 import { fetchBreeds, fetchCatByBreed } from './cat-api';
 import Notiflix from 'notiflix';
 
@@ -13,6 +14,9 @@ const { select, loader, loaderText, error, catInfo } = refs;
 fetchBreeds()
   .then(data => {
     select.innerHTML = createMarkup(data);
+    // new SlimSelect({
+    //   select: '.breed-select',
+    // });
   })
   .catch(() => {
     messageError();
