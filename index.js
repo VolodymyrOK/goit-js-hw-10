@@ -38,10 +38,11 @@ function onChange(event) {
 
   fetchCatByBreed(id)
     .then(data => {
-      if (!data.length) {
-        messageError();
-      }
+      catInfo.innerHTML = '';
       catInfo.innerHTML = createMarkupCat(data);
+      // if (!data.length) {
+      //   messageError();
+      // }
       showLoader('endSearch');
     })
     .catch(() => {
@@ -51,6 +52,10 @@ function onChange(event) {
 }
 
 function createMarkupCat(arr) {
+  if (!arr.length) {
+    return `
+        <p class="error-reading-data-text">Data reading error. Please select a different image.</p>`;
+  }
   return arr
     .map(
       ({ breeds: [{ name, description, temperament }], url }) =>
