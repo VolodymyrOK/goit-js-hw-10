@@ -53,6 +53,9 @@ function onChange(event) {
 
 function createMarkupCat(arr) {
   if (!arr.length) {
+    Notiflix.Notify.failure(
+      'Data reading error. Please select a different image.'
+    );
     return `
         <p class="error-reading-data-text">Data reading error. Please select a different image.</p>`;
   }
